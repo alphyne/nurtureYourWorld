@@ -1,0 +1,84 @@
+<script src="js/renderWorldAudio.js"></script>
+
+<div id="scrim" class="scrim"></div>
+
+<div id="buttonContainer" class="buttonContainer">
+	<div id='enterButton' class="button enterButton" onclick="play()">
+		<a class="hover-sweep">
+			PLAY
+		</a>
+	</div>
+</div>
+
+
+<div class="page-canvas-container">
+		<canvas id='page-canvas'></canvas>
+</div>
+
+<div id='soundcloudButton' class="button soundcloudButton desktopButton" >
+	<a class="hover-sweep">
+		LISTEN ON SOUNDCLOUD
+	</a>
+</div>
+
+<div class="buttonContainerMobile">
+	<div id='soundcloudButtonMobile' class="button soundcloudButton mobileButton" >
+		<a class="hover-sweep">
+			LISTEN ON SOUNDCLOUD
+		</a>
+	</div>
+</div>
+
+
+<div id="c-container" class="canvas-container">
+	<canvas id="c"></canvas>
+</div>
+<div class="title" id="title"> 
+	nurtu<span class="italic">(re:mix)</span> <span id="yourWorld" class="black highlight"> &nbsp;&nbsp;your world</span>
+</div>
+<div class="coordinates" id="coordinates">
+	<div class="coordinate-item">
+		{&nbsp;&nbsp;
+		<div class="coordinate-value" id="x1">0</div>
+		<div class="coordinate-label">&#176; </div>
+		<div class="coordinate-value" id="y1">0</div>
+		<div class="coordinate-label">' </div>
+
+		<div class="coordinate-value-long" id="z1">0</div>
+		<div class="coordinate-label">"&nbsp;N&nbsp;&nbsp;&nbsp;|</div>
+	</div>
+	<div class="coordinate-item">
+	
+		<div class="coordinate-value" id="x2">0</div>
+		<div class="coordinate-label">&#176; </div>
+		<div class="coordinate-value" id="y2">0</div>
+		<div class="coordinate-label">' </div>
+
+		<div class="coordinate-value-long" id="z2">0</div>
+		<div class="coordinate-label">"&nbsp;E&nbsp;&nbsp;}</div>
+		
+	</div>
+</div>
+
+<div class="mouse" id="mouse">
+	<div class="mouse-item">
+		<div class="mouse-label">X: </div>
+		<div class="mouse-value" id="mouseX">0</div>
+	</div>
+	<div class="mouse-item">
+		<div class="mouse-label">Y: </div>
+		<div class="mouse-value" id="mouseY">0</div>
+	</div>
+</div>
+
+<iframe src="audio/silence.mp3" allow="autoplay" style="display: none"></iframe>
+<audio id="audio">
+	<source src="audio/portMash.wav" type="audio/mp3">
+</audio>
+
+
+
+<script src="js/three.js"></script>
+<script src="js/initVariables.js"></script>
+<script src="js/scenes/renderWorld.js"></script>
+<script src="js/placeholder.js"></script>

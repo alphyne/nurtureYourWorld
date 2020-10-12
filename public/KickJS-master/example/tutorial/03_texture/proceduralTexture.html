@@ -1,0 +1,90 @@
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>KickJS | Tutorial | 03 - Texture procedural</title>
+    <script type="text/javascript" src="../../common/common.js"></script>
+</head>
+<body>
+<h1>KickJS | Tutorial | 03 - Texture procedural</h1>
+This example shows how to create a texture from JavaScript.<br>
+<!-- Tutorial start -->
+<canvas id="canvas" style="border: none;" width="500" height="500"></canvas>
+
+    <script src="../../../dependencies/require.js"></script>
+    <script type="text/javascript">
+        var reqOne = require.config({
+            paths: {
+                kick: '../../../build/kick-debug'
+            }
+        });
+
+        reqOne(['kick'],
+            function (kick) {
+    // init engine (create 3d context)
+    var engine = new kick.core.Engine('canvas');
+
+    // create a game object in [0,0,0] facing down the -z axis
+    var cameraObject = engine.activeScene.createGameObject();
+    cameraObject.transform.position = [0,0,5];
+    // create a orthographic camera
+    var camera = new kick.scene.Camera({
+        perspective: false,
+        left:-5,
+        right:5,
+        top:5,
+        bottom:-5
+    });
+    cameraObject.addComponent(camera);
+
+    // create texture
+    var texture = new kick.texture.Texture();
+    var checkerboardWidth = 128;
+    var checkerboardHeight = 128;
+    var checkerboard = new Uint8Array(checkerboardWidth*checkerboardWidth*3); // width * height * 3 color channels (RGB)
+    for (var x=0;x<checkerboardWidth;x++){
+        for (var y=0;y<checkerboardHeight;y++){
+            var position = (x+checkerboardWidth*y)*3;
+            var floorX = Math.floor(x/(checkerboardWidth/8));
+            var floorY = Math.floor(y/(checkerboardHeight/8));
+            var r,g,b;
+            if (floorX === 1 && floorY ===3){ // one brick should be red
+                r = 255;
+                g = b = 0;
+            } else if ((floorX + floorY)%2 === 0){
+                r = g = b = 255;
+            } else {
+                r = g = b = 0;
+            }
+            checkerboard[position+0] = r;
+            checkerboard[position+1] = g;
+            checkerboard[position+2] = b;
+        }
+    }
+    texture.internalFormat = kick.core.Constants.GL_RGB;
+
+    texture.setImageData( checkerboardWidth, checkerboardWidth, 0, kick.core.Constants.GL_UNSIGNED_BYTE,checkerboard);
+
+    // create material
+    var shader = engine.project.load(engine.project.ENGINE_SHADER_UNLIT);
+    var material = new kick.material.Material({
+        shader: shader,
+        uniformData:{
+            mainTexture: texture
+        }
+    });
+
+    // create meshes
+    var meshes = [engine.project.ENGINE_MESH_TRIANGLE, engine.project.ENGINE_MESH_CUBE];
+    for (var i=0;i<meshes.length;i++){
+        var gameObject = engine.activeScene.createGameObject();
+        gameObject.transform.position = [-2.0+4*i,0,0];
+        var meshRenderer = new kick.scene.MeshRenderer();
+        meshRenderer.mesh =  engine.project.load(meshes[i]);
+        meshRenderer.material = material;
+        gameObject.addComponent(meshRenderer);
+    }
+            });
+</script>
+<!-- Tutorial end -->
+</body>
+</html>

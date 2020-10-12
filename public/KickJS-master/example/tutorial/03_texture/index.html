@@ -1,0 +1,70 @@
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>KickJS | Tutorial | 03 - Texture</title>
+    <script type="text/javascript" src="../../common/common.js"></script>
+</head>
+<body>
+<h1>KickJS | Tutorial | 03 - Texture</h1>
+This example shows how to load a texture - note that it only works when run on a webserver with the following
+image: /images/webgl.png.<br>
+<!-- Tutorial start -->
+<canvas id="canvas" style="border: none;" width="500" height="500"></canvas>
+<script src="../../../dependencies/require.js"></script>
+<script type="text/javascript">
+    var reqOne = require.config({
+        paths: {
+            kick: '../../../build/kick-debug'
+        }
+    });
+
+    reqOne(['kick'],
+            function (kick) {
+                // init engine (create 3d context)
+
+                var engine = new kick.core.Engine('canvas');
+
+                // create a game object in [0,0,0] facing down the -z axis
+                var cameraObject = engine.activeScene.createGameObject();
+                cameraObject.transform.position = [0,0,5];
+                // create a orthographic camera
+                var camera = new kick.scene.Camera({
+                    perspective: false,
+                    left:-5,
+                    right:5,
+                    top:5,
+                    bottom:-5
+                });
+                cameraObject.addComponent(camera);
+
+                // create texture
+                var texture = new kick.texture.Texture();
+                // if texture is not on same server, then the web server must support CORS
+                // See http://hacks.mozilla.org/2011/11/using-cors-to-load-webgl-textures-from-cross-domain-images/
+                texture.dataURI = "/images/webgl.png";
+                texture.init();
+
+                // create material
+                var shader = engine.project.load(engine.project.ENGINE_SHADER_UNLIT);
+                var material = new kick.material.Material({
+                    shader: shader,
+                    uniformData:{
+                        mainTexture: texture
+                    }
+                });
+
+                // create meshes
+                var meshes = [engine.project.ENGINE_MESH_TRIANGLE, engine.project.ENGINE_MESH_CUBE];
+                for (var i=0;i<meshes.length;i++){
+                    var gameObject = engine.activeScene.createGameObject();
+                    gameObject.transform.position = [-2.0+4*i,0,0];
+                    var meshRenderer = new kick.scene.MeshRenderer();
+                    meshRenderer.mesh = engine.project.load(meshes[i]);
+                    meshRenderer.material = material;
+                    gameObject.addComponent(meshRenderer);
+                }
+            });
+</script>
+<!-- Tutorial end -->
+</body>
+</html>

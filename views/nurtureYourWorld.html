@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>My first three.js app</title>
+
+		<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+		<style>
+			.canvas-container {
+				text-align: center;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				z-index: 10;
+				
+			}
+
+			#c{
+				width: 60%;
+				height: 60%;
+				/*margin: 0 50%;*/
+				top: 50%;
+				transform: translateY(-50%);
+				position: absolute;
+				border: white 2px solid;
+			}
+
+			.video {
+				width: 60%;
+				height: 60%;
+				/*margin: 0 50%;*/
+				top: 50%;
+				transform: translateY(-50%);
+				position: absolute;
+				/*border: white 2px solid;*/
+			}
+
+			.wide {
+				width: 80%;
+			}
+
+			.coordinates {
+				font-size: 16px;
+				color: white;
+				position: absolute;
+				bottom: 3.125%;
+				left: 3.125%;
+
+				display: flex;
+				justify-content: center;
+			}
+
+			.mouse {
+				color: white;
+				position: fixed;
+				bottom: 3.125%;
+				right: 3.125%;
+				font-size: 16px;
+
+				display: flex;
+				justify-content: center;
+			}
+
+			.mouse-item {
+				/*width: 5rem;*/
+				margin: 1rem 1.5rem;
+				display: flex;
+			}
+
+			.mouse-value {
+				width: 2rem;
+			}
+
+			.mouse-label {
+				margin-right: 0.5rem;
+			}
+
+			.coordinate-item {
+				margin: 1rem 1rem;
+				/*width: 3rem;*/
+				display: flex;
+			}
+
+
+			.coordinate-label {
+				margin-left: 0.25rem;
+				width: 0.75rem;
+			}
+
+
+
+			.coordinate-value {
+				font-style: italic;
+				margin-left: 0.25rem;
+				width: 1rem;
+			}
+			.coordinate-value-long {
+				width: 3.5rem;
+			}
+
+			#body {
+				background-color: black;
+				font-family: 'Lora', serif;
+				color: white;
+			}
+
+			.pressedFont {
+				color: black;
+				font-size: 5rem;
+				display: block;
+				top: 10rem;
+				left: 0;
+				right: none;
+				bottom: none;
+			}
+
+			.message {
+				position: fixed;
+				text-align: center;
+				font-size: 5rem;
+				color: black;
+				font-style: italic;
+				font-weight: 400;
+				top: 0;
+				right: 10%;
+			}
+			.hidden {
+				display: none;
+			}
+
+			.page-canvas-container {
+				/*text-align: center;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;*/
+
+			}
+			#page-canvas {
+				background-color: black;
+				/*position: absolute;*/
+				
+				height: 97vh;
+				width: 100%;
+			}
+
+			.enterButton{
+				position: fixed;
+				top: 1rem;
+				left: 1rem;
+			}
+
+			.highlight{
+				background-color: white;
+				color: black;
+			}
+
+			.black {
+				color: black;
+			}
+
+			.word{
+				margin: 1rem 1rem;
+			}
+
+			#word::after {
+				content:"";
+				position: absolute;
+				top: 12px;
+				right: 10px;
+				display: inline-block;
+				background-color: white;
+				vertical-align: top;
+				width: 10px;
+				height: 20px;
+			}
+
+			.title {
+				position: absolute;
+				right: 3.125%;
+				top: 3.125%;
+				font-size: 48px;
+			}
+
+			.italic {
+				font-style: italic;
+			}
+
+			.slash {
+				width: 3rem;
+			}
+
+			.gradient {
+				background-image: linear-gradient(#006AB4, black);
+			}
+
+		</style>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+
+	</head>
+	<!--<body onmousedown="mouseDown()" onmouseup="mouseUp()">-->
+	<body id='body'>
+		<script src="require.js"></script>
+		<script src="js/renderWorldAudio.js"></script>
+
+
+
+		<div class="page-canvas-container">
+			<canvas id='page-canvas'></canvas>
+		</div>
+
+
+
+		<div id="c-container" class="canvas-container">
+			<canvas id="c"></canvas>
+			<video class="video" id='videoSky' src="video/sky.mp4" autoplay muted></video>
+			<video class="video" id='videoLeaf' src="video/leaf.mp4" autoplay muted></video>
+			<video class="video" id='videoButterfly' src="video/butterfly.mp4" autoplay muted></video>
+			<video class="video" id='videoFire' src="video/fire.mp4" autoplay muted></video>
+			<video class="video" id='videoDaisy' src="video/daisy.mp4" autoplay muted></video>
+			<video class="video" id='videoWave' src="video/wave.mp4" autoplay muted></video>
+			<video class="video" id='videoFireworks' src="video/fireworks.mp4" autoplay muted></video>
+		</div>
+		<div class="title" id="title"> 
+			nurtu<span class="italic">(re:mix)</span> <span id="yourWorld" class="black highlight"> &nbsp;&nbsp;your world</span>
+		</div>
+		<div class="coordinates" id="coordinates">
+			<div class="coordinate-item">
+				{&nbsp;&nbsp;
+				<div class="coordinate-value" id="x1">0</div>
+				<div class="coordinate-label">&#176; </div>
+				<div class="coordinate-value" id="y1">0</div>
+				<div class="coordinate-label">' </div>
+
+				<div class="coordinate-value-long" id="z1">0</div>
+				<div class="coordinate-label">"&nbsp;N&nbsp;&nbsp;|</div>
+			</div>
+			<!--<div class='slash'>/</div>-->
+			<div class="coordinate-item">
+			
+				<div class="coordinate-value" id="x2">0</div>
+				<div class="coordinate-label">&#176; </div>
+				<div class="coordinate-value" id="y2">0</div>
+				<div class="coordinate-label">' </div>
+
+				<div class="coordinate-value-long" id="z2">0</div>
+				<div class="coordinate-label">"&nbsp;E&nbsp;&nbsp;}</div>
+				
+			</div>
+		</div>
+
+		<div class="mouse" id="mouse">
+			<div class="mouse-item">
+				<div class="mouse-label">X: </div>
+				<div class="mouse-value" id="mouseX">0</div>
+			</div>
+			<div class="mouse-item">
+				<div class="mouse-label">Y: </div>
+				<div class="mouse-value" id="mouseY">0</div>
+			</div>
+			<!--<div id="word-background" class="word">
+				<div class="coordinate-label"><span id="word"></span><span id='cursor'></span></div>
+			</div>-->
+		</div>
+
+		<iframe src="audio/silence.mp3" allow="autoplay" style="display: none"></iframe>
+		<audio id="audio">
+			<source src="audio/portMash.wav" type="audio/mp3">
+		</audio>
+
+		<input class="enterButton" type="button" value="enter" onclick="play()">
+
+		<!--<canvas id='videoCanvas'></canvas>-->
+		
+
+
+		<script src="js/three.js"></script>
+		<script src="js/initVariables.js"></script>
+		<script src="js/scenes/renderWorld.js"></script>
+		<script src="js/scenes/renderTriangles.js"></script>
+		<script src="js/scenes/renderTunnel.js"></script>
+		<script src="js/renderWorldRemix.js"></script>
+
+
+
+	</body>
+</html>

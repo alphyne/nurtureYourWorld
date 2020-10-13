@@ -163,11 +163,19 @@ body {
     height: 20px;
 }
 
-.title {
+.titleContainer {
     position: absolute;
     left: 3.125%;
     top: 3.125%;
+}
+
+.title {
     font-size: 48px;
+}
+
+.artist {
+    margin-top: 0.75rem;
+    font-size: 16px;
 }
 
 .italic {
@@ -178,7 +186,7 @@ body {
     width: 3rem;
 }
 
-.buttonContainer {
+.modalContainer {
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -195,6 +203,15 @@ body {
     padding: 1rem 2rem;
     font-family: 'Lora', serif;
     font-size: 24px;
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
+    a:hover {
+        color: black;
+    }
 }
 
 .button:hover {
@@ -206,6 +223,12 @@ body {
     transform: translateY(-50%);
     top: 50%;
     position: absolute;
+    z-index: 25;
+}
+.enterDetails {
+    margin-top: 2rem;
+    position: absolute;
+    top: 55%;
     z-index: 25;
 }
 
@@ -276,10 +299,13 @@ body {
     z-index: 20;
 }
 
-@media (max-width: 1024px){
+@media (max-width: 1440px){
     .title {
-        top: 2rem;
         font-size: 32px;
+    }
+
+    .titleContainer {
+        top: 2rem;
     }
 }
 
@@ -336,9 +362,12 @@ body {
         top: 50%;
     }
 
-    .title {
+    .titleContainer {
         right: 3.125%;
         top: 5vh;
+    }
+
+    .title {
         font-size: 24px;
     }
 

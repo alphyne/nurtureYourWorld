@@ -2,12 +2,13 @@
 
 <div id="scrim" class="scrim"></div>
 
-<div id="buttonContainer" class="buttonContainer">
+<div id="modalContainer" class="modalContainer">
 	<div id='enterButton' class="button enterButton" onclick="play()">
 		<a class="hover-sweep">
-			PLAY
+			ENTER
 		</a>
 	</div>
+	<div id='enterDetails' class="enterDetails">[ this window will play audio ]</div>
 </div>
 
 
@@ -16,14 +17,14 @@
 </div>
 
 <div id='soundcloudButton' class="button soundcloudButton desktopButton" >
-	<a class="hover-sweep">
+	<a class="hover-sweep" target="_blank" ="https://soundcloud.com/alphynee">
 		LISTEN ON SOUNDCLOUD
 	</a>
 </div>
 
 <div class="buttonContainerMobile">
 	<div id='soundcloudButtonMobile' class="button soundcloudButton mobileButton" >
-		<a class="hover-sweep">
+		<a class="hover-sweep" target="_blank" href="https://soundcloud.com/alphynee">
 			LISTEN ON SOUNDCLOUD
 		</a>
 	</div>
@@ -33,8 +34,13 @@
 <div id="c-container" class="canvas-container">
 	<canvas id="c"></canvas>
 </div>
-<div class="title" id="title"> 
-	nurtu<span class="italic">(re:mix)</span> <span id="yourWorld" class="black highlight"> &nbsp;&nbsp;your world</span>
+<div class="titleContainer" id="title"> 
+	<div class="title">
+		nurtu<span class="italic">(re:mix)</span> <span id="yourWorld" class="black highlight"> &nbsp;&nbsp;your world</span>
+	</div>
+	<div class="artist">
+		[alphyne]
+	</div>
 </div>
 <div class="coordinates" id="coordinates">
 	<div class="coordinate-item">

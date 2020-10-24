@@ -86,7 +86,7 @@ document.addEventListener( 'mousemove', onDocumentMouseMove, false );
         context.fillRect(fillX, fillY, 10, 10);
         setTimeout(function(){
             context.fillStyle = "#000000";
-            context.fillRect(mouseX-15, mouseY-15, 10, 10)
+            context.fillRect(fillX, fillY, 10, 10)
         }, 10000);
     }
 

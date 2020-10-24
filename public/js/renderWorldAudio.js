@@ -1,7 +1,8 @@
 
 
+
 function play() {
-    const audio = document.getElementById('audio');
+
     audio.play();
 }
 
@@ -18,7 +19,6 @@ function enter() {
 
 
 function pause() {
-    const audio = document.getElementById('audio');
     audio.pause();
 
     document.getElementById('pauseMobile').classList.add('hidden');
@@ -31,3 +31,9 @@ function resume() {
     document.getElementById('pauseMobile').classList.remove('hidden');
     document.getElementById('playMobile').classList.add('hidden');
 }
+
+function replay() {
+    document.getElementById('pauseMobile').classList.add('hidden');
+    document.getElementById('playMobile').classList.remove('hidden');
+    console.log('audio ended');
+};

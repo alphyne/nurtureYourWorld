@@ -1,3 +1,5 @@
+const audio = document.getElementById('audio');
+
 var pressed = false;
 var clickCount = 0;
 

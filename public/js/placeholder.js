@@ -81,8 +81,8 @@ document.addEventListener( 'mousemove', onDocumentMouseMove, false );
         console.log('init drawPixel');
         const pixelRatio = window.devicePixelRatio
         context.fillStyle = "#ffffff";
-        const fillX = (mouseX*pixelRatio);
-        const fillY = (mouseY*pixelRatio);
+        const fillX = (mouseX*pixelRatio)-5;
+        const fillY = (mouseY*pixelRatio)-5;
         context.fillRect(fillX, fillY, 10, 10);
         setTimeout(function(){
             context.fillStyle = "#000000";

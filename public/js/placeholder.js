@@ -88,43 +88,7 @@ document.addEventListener( 'mousemove', onDocumentMouseMove, false );
             context.fillStyle = "#000000";
             context.fillRect(fillX, fillY, 10, 10)
         }, 10000);
-    }
-
-    function printWord(){
-        var index = 0;
-        var wordArray = ['n','u','r','t','u','r','e'];
-        
-        var printNextLetter = function(){
-            var word = document.getElementById('word');
-            if(index < wordArray.length){
-                var CHAR = wordArray[index];
-
-                word.append(CHAR);
-            }
-
-            index++;
-
-            setTimeout(printNextLetter, 500);
-        }
-
-        printNextLetter();
-
-        setTimeout(function(){
-            var box = document.getElementById('word-background');
-            $("#word-background").addClass('highlight');
-        }, 1000*wordArray.length);
-
-
-    }
-
- 
-    function animateCursor(){
-        $('#cursor').animate({
-            opacity: 0
-        }, 'slow').animate({
-            opacity: 1
-        }, 'slow');
-    }
+}
 
     function clearThree(obj){
         console.log('clearThree init');

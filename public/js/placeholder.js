@@ -44,6 +44,7 @@ document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 
     }
 
+
     // Resize canvas side to current display
     function resizePageCanvasToDisplaySize() {
         const pageCanvas = document.querySelector('#page-canvas');
@@ -62,13 +63,13 @@ document.addEventListener( 'mousemove', onDocumentMouseMove, false );
  
     function onDocumentMouseMove( event ) {
 
-    mouseX = event.clientX;
-    mouseY = event.clientY;
+        mouseX = event.clientX - pageCanvas.offsetLeft;
+        mouseY = event.clientY - pageCanvas.offsetTop;
 
-    prevMouseX = mouseX;
-    prevMouseY = mouseY;
+        prevMouseX = mouseX;
+        prevMouseY = mouseY;
 
-    moveCount++;
+        moveCount++;
     }
 
 
@@ -78,8 +79,11 @@ document.addEventListener( 'mousemove', onDocumentMouseMove, false );
  
     function drawPixel(mouseX, mouseY){
         console.log('init drawPixel');
+        const pixelRatio = window.devicePixelRatio
         context.fillStyle = "#ffffff";
-        context.fillRect(mouseX-15, mouseY-15, 10, 10);
+        const fillX = (mouseX*pixelRatio);
+        const fillY = (mouseY*pixelRatio);
+        context.fillRect(fillX, fillY, 10, 10);
         setTimeout(function(){
             context.fillStyle = "#000000";
             context.fillRect(mouseX-15, mouseY-15, 10, 10)
@@ -192,7 +196,7 @@ document.addEventListener( 'mousemove', onDocumentMouseMove, false );
  
         resizePageCanvasToDisplaySize();
  
-
+        //fixPageCanvasAspectRatio ();
 
         camera.position.x = 100;
         camera.position.y = 0;

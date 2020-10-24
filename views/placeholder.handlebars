@@ -3,7 +3,7 @@
 <div id="scrim" class="scrim"></div>
 
 <div id="modalContainer" class="modalContainer">
-	<div id='enterButton' class="button enterButton" onclick="play()">
+	<div id='enterButton' class="button enterButton" onclick="enter()">
 		<a class="hover-sweep">
 			ENTER
 		</a>
@@ -16,21 +16,33 @@
 		<canvas id='page-canvas'></canvas>
 </div>
 
-<div id='soundcloudButton' class="button soundcloudButton desktopButton" >
-	<a class="hover-sweep" target="_blank" ="https://soundcloud.com/alphynee">
-		LISTEN ON SOUNDCLOUD
+<!-- Top right buttons -->
+<!-- Pause Mobile -->
+<div id="pauseMobile" class="button pauseButton topRightButton">
+	<a class="hover-sweep" onclick="pause()">
+		PAUSE
 	</a>
 </div>
 
-<div class="buttonContainerMobile">
-	<div id='soundcloudButtonMobile' class="button soundcloudButton mobileButton" >
+<!-- Play Mobile -->
+<div id="playMobile" class="button pauseButton topRightButton hidden">
+	<a class="hover-sweep" onclick="resume()">
+		PLAY
+	</a>
+</div>
+
+<!-- Center buttons -->
+<div class="buttonContainerCenter">
+
+	<!-- Soundcloud mobile -->
+	<div id='soundcloudMobile' class="button soundcloudButton centerButton" >
 		<a class="hover-sweep" target="_blank" href="https://soundcloud.com/alphynee">
 			LISTEN ON SOUNDCLOUD
 		</a>
 	</div>
 </div>
 
-
+<!-- Canvas -->
 <div id="c-container" class="canvas-container">
 	<canvas id="c"></canvas>
 </div>
@@ -81,8 +93,6 @@
 <audio id="audio">
 	<source src="audio/portMash.wav" type="audio/mp3">
 </audio>
-
-
 
 <script src="js/three.js"></script>
 <script src="js/initVariables.js"></script>

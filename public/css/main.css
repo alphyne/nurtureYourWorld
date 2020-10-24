@@ -259,6 +259,12 @@ body {
   color: black;
 }
 
+.controls {
+  z-index: 15;
+  position: absolute;
+  top: 25%;
+}
+
 .button:hover {
   color: black;
 }
@@ -277,18 +283,15 @@ body {
   z-index: 25;
 }
 
-.soundcloudButton {
+.topRightButton {
+  top: 3.125%;
+  right: 3.125%;
   position: absolute;
   z-index: 15;
   font-size: 16px;
 }
 
-.desktopButton {
-  top: 3.125%;
-  right: 3.125%;
-}
-
-.buttonContainerMobile {
+.buttonContainerCenter {
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -296,10 +299,19 @@ body {
   align-items: center;
 }
 
-.mobileButton {
-  top: 18%;
+.centerButton {
+  bottom: 16%;
   margin: 0 auto;
   font-size: 16px;
+  position: absolute;
+  z-index: 15;
+}
+
+#soundcloudDesktop {
+  opacity: 0;
+}
+
+#pauseDesktop {
   opacity: 0;
 }
 
@@ -349,11 +361,8 @@ body {
 }
 
 @media (max-width: 840px) {
-  .desktopButton {
-    opacity: 0;
-  }
-  .mobileButton {
-    opacity: 1;
+  .button {
+    font-size: 12px;
   }
   .coordinates {
     bottom: 5vh;
@@ -397,7 +406,7 @@ body {
     top: 5vh;
   }
   .title {
-    font-size: 24px;
+    font-size: 20px;
   }
   #mouse {
     display: none;
@@ -410,6 +419,10 @@ body {
     top: none;
     margin: auto;
     text-align: center;
+  }
+  .topRightButton {
+    top: 5%;
+    padding: 0.5rem 1rem;
   }
 }
 

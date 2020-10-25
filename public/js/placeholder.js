@@ -8,12 +8,21 @@ setScene();
         
 
 document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-
+canvas.addEventListener( 'mouseenter', onHover, false);
+canvas.addEventListener( 'mouseleave', offHover, false);
 
 
     // Event listener: mousehold
-    //document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-    //document.addEventListener('mouseup', onDocumentMouseUp, false);
+    document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+    document.addEventListener('mouseup', onDocumentMouseUp, false);
+
+    function onHover() {
+        hover = true;
+    }
+
+    function offHover() {
+        hover = false;
+    }
 
     // Resize canvas side to current display
     function resizeRendererToDisplaySize(renderer) {
@@ -123,11 +132,62 @@ document.addEventListener( 'mousemove', onDocumentMouseMove, false );
     }, 4000);
 
     function setScene(){
-    console.log('setScene init');
+        console.log('setScene init');
+        console.log('clickCount is: ' + clickCount);
 
-    buildRenderWorld();
-    scene = scene1;
-    console.log('scene 1 set');
+        switch (clickCount % 8) {
+
+            // renderWorld
+            case 0:
+                $("#videoSky").hide();
+                $("#videoFire").hide();
+                $("#videoDaisy").hide();
+                $("#videoWave").hide();
+                $("#videoFireworks").hide();
+                clearThree(scene3);
+                buildRenderWorld();
+                scene = scene1;
+                console.log('scene 1 set');
+                break;
+
+            // videoSky
+            case 1:
+                clearThree(scene1);
+                break;
+
+            // renderTriangles
+            case 2: 
+                buildRenderTriangles();
+                scene = scene2;
+                console.log('scene 2 set');
+
+                break;
+
+            // videoDaisy
+            case 3:
+                clearThree(scene2);
+                break;
+
+            // videoFire
+            case 4:
+                break;
+            
+            // renderTunnel
+            case 5:
+                buildRenderTunnel();
+                scene = scene3;
+                console.log('scene 3 set');
+                break;
+        
+            // videoWave
+            case 6:
+                clearThree(scene3);
+                break;
+            
+            //videoFireworks
+            case 7:
+                break;
+        }
 
     }
  
@@ -160,23 +220,118 @@ document.addEventListener( 'mousemove', onDocumentMouseMove, false );
  
         resizePageCanvasToDisplaySize();
  
-        //fixPageCanvasAspectRatio ();
+        switch (clickCount % 8) {
 
-        camera.position.x = 100;
-        camera.position.y = 0;
-        camera.position.z = 300;
+            // renderWorld
+            case 0:
+                /*camera.position.x = cameraX;
+                camera.position.y = cameraY;
+                camera.position.z = cameraZ;*/
+
+                camera.position.x = 100;
+                camera.position.y = 0;
+                camera.position.z = 240;
 
 
-        scene.background = new THREE.Color( windowColorCurrent );
+                scene.background = new THREE.Color( windowColorCurrent );
 
-        cube.rotation.x -= rotationRateX;
-        cube.rotation.y += rotationRateY;
+                if(hover){
+                    cube.rotation.x -= 0.021;
+                    cube.rotation.y += 0.007;
+                }
+                else {
+                    cube.rotation.x -= rotationRateX;
+                    cube.rotation.y += rotationRateY;
+                }
 
-        camera.updateProjectionMatrix();
-                 
- 
-         renderer.render(scene, camera);
-         requestAnimationFrame(render);
+                camera.updateProjectionMatrix();
+                break;
+
+            // videoSky
+            case 1:
+                break;
+
+            // renderTriangles
+            case 2:
+                camera.position.x += ( mouseX*1.75 - camera.position.x ) * 0.07;
+                camera.position.y += ( - mouseY*1.75 - camera.position.y ) * 0.07;
+
+                camera.lookAt( scene2.position );
+
+
+                group.rotation.x += 0.001;
+                group.rotation.y += 0.001;
+                group.rotation.z += 0.001;
+
+
+
+                renderer.setClearColor(0xffffff, 0);
+
+                break;
+            
+            // videoDaisy
+            case 3:
+                break;
+
+            // videoFire
+            case 4:
+                break;
+
+            // renderTunnel
+            case 5:
+
+                if(camera.position.z <= -3000){
+                    reachedLimit = true;
+                }
+                if (camera.position.z >= 21000){
+                    reachedLimit = false;
+                }
+
+                if(reachedLimit) {
+                    if(hover){
+                        camera.position.z += 48;
+                    } 
+                    else {
+                        camera.position.z += 8;
+                    }
+
+                } 
+                else {
+                    if(hover){
+                        camera.position.z -= 48;
+                    }
+                    else {
+                        camera.position.z -= 8;
+                    }
+
+                }
+
+
+                //camera.position.z -= 30;
+                //tunnel.rotation.y -= 0.0006;
+                tunnel.rotation.y -= 0.002;
+                
+                /*setTimeout(function() {
+                    camera.position.z -= 30;
+                    tunnel.rotation.y += 0.005;
+                }, 13000);
+
+                setTimeout(function() {
+                    camera.position.z -= 170;
+                    tunnel.rotation.y -= 0.01;
+                }, 25000);*/
+                break;
+
+            // videoWave
+            case 6:
+                    break;
+
+            // videoFireworks
+            case 7:
+                    break;
+        }
+        renderer.render(scene, camera);
+        requestAnimationFrame(render);
      }
  
     function onDocumentMouseDown( event ) {
@@ -222,7 +377,12 @@ document.addEventListener( 'mousemove', onDocumentMouseMove, false );
         //light3.visible = false;
 
         //scene = scene2;
-        setScene();
+        if(entered){
+            clickCount++;
+            setScene();
+        }
+
+
         //New mouse down
         
 
@@ -230,25 +390,58 @@ document.addEventListener( 'mousemove', onDocumentMouseMove, false );
         //var tempCanvas = document.getElementById('c');
 
 
+        switch (clickCount % 8) {
+
+            // renderWorld
+            case 0:
+                $("#videoFireworks").hide(); 
                 $("#c").show();
-        
+                break;
 
+            // videoSky
+            case 1:
+                $("#c").hide();
+                $("#videoSky").show();
+                break;
 
-            /*case 1:
+            // renderTriangles
+            case 2:
+                $("#videoSky").hide();
+                $("#c").show();
                 $("#c").addClass('gradient');
                 break;
-            case 2: 
-                $("#c").removeClass('gradient');
-                break;
-            case 3:
-                $("#c").hide();
-                $("#video").show();
-                break;
-            case 4:
-                break;
-            case 5:
-                break;*/
 
+            // videoDaisy
+            case 3:
+                $("#c").removeClass('gradient');
+                $("#c").hide();
+                $("#videoDaisy").show(); 
+                break;
+
+            // videoFire
+            case 4:
+                $("#videoDaisy").hide();
+                $("#videoFire").show();    
+                break;  
+
+            // renderTunnel
+            case 5:
+                $("#videoFire").hide(); 
+                $("#c").show();
+                break;
+                
+            // videoWave
+            case 6:
+                $("#c").hide();
+                $("#videoWave").show(); 
+                break;
+
+            // videoFireworks
+            case 7:
+                $("#videoWave").hide(); 
+                $("#videoFireworks").show(); 
+                break;
+        }
         
 
         

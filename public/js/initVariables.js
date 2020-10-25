@@ -1,10 +1,13 @@
 const audio = document.getElementById('audio');
 
 var pressed = false;
+var hover = false;
+var entered = false;
 var clickCount = 0;
 
 var rotationRateX = 0.003;
 var rotationRateY = 0.007;
+var reachedLimit = false;
 
 var mouseX = 0, mouseY = 0;
 var prevMouseX = 0, prevMouseY = 0;

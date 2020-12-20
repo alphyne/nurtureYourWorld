@@ -8,10 +8,10 @@ function init() {
     $("#videoFireworks").hide();
 
     console.log('%c [ nurture your world ] ', 'background: #000000; color:#06F2FF;');
-    console.log('%c [ remix + website + visuals by alphyne ]', 'background: #000000; color:#06F2FF;');
+    console.log('%c [ mashup + website + visuals by alphyne ]', 'background: #000000; color:#06F2FF;');
     console.log('%c [ released 2020 ]', 'background: #000000; color:#06F2FF;');
     console.log('%chttp://nurtureyour.world', 'background: #000000; color:#06F2FF;');
-    console.log('%c remix on youtube: ' + 'https://youtu.be/s0RE50r8tr8', 'background: #000000; color:#06F2FF;');
+    console.log('%c remix on youtube: ' + 'https://youtu.be/ocfO_qDPZZQ', 'background: #000000; color:#06F2FF;');
     console.log('%c original audio:', 'background: #000000; color:#06F2FF;');
     console.log('%c Porter Robinson {https://porterrobinson.com}', 'background: #000000; color:#06F2FF;');
     console.log('%c kz-livetune {https://www.youtube.com/user/kzlivetune/featured}', 'background: #000000; color:#06F2FF;');

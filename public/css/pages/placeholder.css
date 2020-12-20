@@ -363,9 +363,6 @@ body {
   .title {
     font-size: 20px;
   }
-  #mouse {
-    display: none;
-  }
   .enterButton {
     color: white;
     padding: 1rem 2rem;
@@ -382,7 +379,17 @@ body {
 }
 
 @media (max-width: 500px) {
+  /*#mouse-item1, #mouse-item2, #z1, #z2, #z1label, #z2label {
+        display: none;
+
+    }*/
   #mouse {
     display: none;
+  }
+  /*#mouse {
+        right: 10%;
+    }*/
+  .artist {
+    font-size: 12px;
   }
 }

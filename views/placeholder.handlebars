@@ -8,7 +8,12 @@
 			ENTER
 		</a>
 	</div>
-	<div id='enterDetails' class="enterDetails">[this window will play audio]</div>
+	<!--<div id='enterDetails' class="enterDetails">[interactive visualizer will play audio]</div>
+	<div id='mobileDetails' class="mobileDetails">[ fully interactive build on desktop</div>-->
+	<div class="enterDetails">
+		<div id='enterDetails'>[ interactive visualizer will play audio ]</div>
+		<div id='mobileDetails' style="padding-top: 0.5rem;">[ explore on desktop for more ]</div>
+	</div>
 </div>
 
 
@@ -36,8 +41,8 @@
 
 	<!-- Soundcloud mobile -->
 	<div id='soundcloudMobile' class="button soundcloudButton centerButton" >
-		<a class="hover-sweep" target="_blank" href="https://soundcloud.com/alphynee">
-			LISTEN ON SOUNDCLOUD
+		<a class="hover-sweep" target="_blank" href="https://youtu.be/s0RE50r8tr8">
+			LISTEN ON YOUTUBE
 		</a>
 	</div>
 </div>
@@ -56,7 +61,7 @@
 		nurtu<span class="italic">(re:mix)</span> <span id="yourWorld" class="black highlight"> &nbsp;&nbsp;your world</span>
 	</div>
 	<div class="artist">
-		[alphyne]
+		[ built &amp; mixed by alphyne ]
 	</div>
 </div>
 <div class="coordinates" id="coordinates">
@@ -68,7 +73,7 @@
 		<div class="coordinate-label">' </div>
 
 		<div class="coordinate-value-long" id="z1">0</div>
-		<div class="coordinate-label">"&nbsp;N&nbsp;&nbsp;&nbsp;|</div>
+		<div class="coordinate-label" id="z1label">"&nbsp;N&nbsp;&nbsp;&nbsp;|</div>
 	</div>
 	<div class="coordinate-item">
 	
@@ -78,19 +83,23 @@
 		<div class="coordinate-label">' </div>
 
 		<div class="coordinate-value-long" id="z2">0</div>
-		<div class="coordinate-label">"&nbsp;E&nbsp;&nbsp;}</div>
+		<div class="coordinate-label" id="z2label">"&nbsp;E&nbsp;&nbsp;}</div>
 		
 	</div>
 </div>
 
 <div class="mouse" id="mouse">
-	<div class="mouse-item">
+	<div id="mouse-item1" class="mouse-item">
 		<div class="mouse-label">X: </div>
 		<div class="mouse-value" id="mouseX">0</div>
 	</div>
-	<div class="mouse-item">
+	<div id="mouse-item2"class="mouse-item">
 		<div class="mouse-label">Y: </div>
 		<div class="mouse-value" id="mouseY">0</div>
+	</div>
+	<div id="mouse-item3"class="mouse-item">
+		<!--<div class="mouse-label"></div>-->
+		<div class="mouse-value" id='timestamp'>-4:50</div>
 	</div>
 </div>
 

@@ -1,7 +1,8 @@
 
 function buildRenderTriangles() {
-    
-    console.log('buildRenderTriangles init');
+    //camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
+
+    //console.log('buildRenderTriangles init');
 
     //scene2 = new THREE.Scene();
     //scene2.background = new THREE.Color( 0x06F2FF );

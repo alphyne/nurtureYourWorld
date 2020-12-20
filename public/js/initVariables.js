@@ -4,6 +4,7 @@ var pressed = false;
 var hover = false;
 var entered = false;
 var clickCount = 0;
+var mobileStep = 0;
 
 var rotationRateX = 0.003;
 var rotationRateY = 0.007;
@@ -49,6 +50,9 @@ const coordinateX2 = document.querySelector('#x2');
 const coordinateY2 = document.querySelector('#y2');
 const coordinateZ2 = document.querySelector('#z2');
 
+const zlabel1 = document.querySelector('#z1label');
+const zlabel2 = document.querySelector('#z2label');
+
 const mouseXLabel = document.querySelector('#mouseX');
 const mouseYLabel = document.querySelector('#mouseY');
 
@@ -71,6 +75,6 @@ var moveCount = 0;
 var camera = new THREE.PerspectiveCamera(
     75, 
     window.innerWidth/window.innerHeight, 
-    0.1, 
+    1, 
     1000
 );

@@ -1,11 +1,18 @@
 
 function buildRenderWorld() {
 
-    console.log('buildRenderWorld init');
+    //console.log('buildRenderWorld init');
 
-    camera.position.x = 0;
+    //console.log('welcome to our world')
+
+    camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
+    camera.position.x = 100;
     camera.position.y = 0;
-    camera.position.z = 0;
+    camera.position.z = 340;
+
+    /*camera.position.x = 0;
+    camera.position.y = 0;
+    camera.position.z = 0;*/
 
     // Create scene
     //const scene1 = new THREE.Scene();
@@ -62,9 +69,6 @@ function buildRenderWorld() {
 
     var ambientLight = new THREE.AmbientLight(0xaaaaaa);
     scene1.add(ambientLight);
-
-    camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
-    camera.position.z = 500;
 }
 
 

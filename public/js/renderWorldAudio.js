@@ -13,6 +13,7 @@ function enter() {
     document.getElementById('modalContainer').classList.add('hidden');
     document.getElementById('enterButton').classList.add('hidden');
     document.getElementById('enterDetails').classList.add('hidden');
+    document.getElementById('mobileDetails').classList.add('hidden');
     entered = true;
 
     //document.getElementById('soundcloudButton').classList.add('show');
